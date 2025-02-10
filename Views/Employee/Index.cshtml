@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DataVisualization.Models.Employee>
+
+<h2>Employee Salaries Chart (Chart.js)</h2>
+<canvas id="salaryChart"></canvas>
+
+<h2>Employee Data</h2>
+<table border="1" width="100%">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Salary</th>
+    </tr>
+
+    @foreach (var employee in Model)
+    {
+        <tr>
+            <td>@employee.Id</td>
+            <td>@employee.Name</td>
+            <td>@employee.Position</td>
+            <td>@employee.Salary</td>
+        </tr>
+    }
+</table>
+
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var employeeNames = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Select(e => e.Name)));
+    var employeeSalaries = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Select(e => e.Salary)));
+
+    var ctx = document.getElementById('salaryChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: employeeNames,
+            datasets: [{
+                label: 'Salary',
+                data: employeeSalaries,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
