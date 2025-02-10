@@ -11,8 +11,9 @@ This project is a web application built using **ASP.NET MVC** and **Chart.js** t
 
 ## Screenshot
 
-![Employee Data Visualization Screenshot](![image](https://github.com/user-attachments/assets/00c2c676-5e61-4712-9899-95806a34fd90)
-)
+![Employee Data Visualization Screenshot]
+![image](https://github.com/user-attachments/assets/ea7a6e81-a95c-4225-a7db-e5cd42a6436a)
+
 
 ## Technologies Used
 
